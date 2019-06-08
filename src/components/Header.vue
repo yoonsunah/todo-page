@@ -21,7 +21,9 @@ export default {
   methods:{
     handleInput(event){
       if(event.keyCode === 13){
-        this.$emit("addTodo", this.text)
+        if(!this.text)return; 
+        this.$emit("addTodo", this.text);
+        this.text="";
       }
     }
   }

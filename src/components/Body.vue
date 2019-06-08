@@ -1,9 +1,9 @@
 }<template>
   <section class="main">
     <ul class="todo-list">
-      <li :class="{todo: true, completed: isDone}"  v-for="({text, isDone}, idx) in todos" :key="idx">
+      <li :class="{todo: true, completed: isDone}"  v-for="({ id, text, isDone}, idx) in todos" :key="idx">
         <div class="view">
-          <input class="toggle" type="checkbox" :checked="isDone">
+          <input class="toggle" type="checkbox" :checked="isDone" @click="handleDone(id)">
           <label>{{text}}</label>
           <button class="destroy"></button>
         </div>
@@ -17,6 +17,11 @@
 export default {
   props:{
     todos :{type: Array, default:() =>[]} 
+  },
+  methods : {
+    handleDone(id){
+      this.$emit("updateDone" ,id);
+    }
   }
 };
 </script>

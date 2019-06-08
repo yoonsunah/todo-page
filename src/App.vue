@@ -2,7 +2,7 @@
   <div id="app">
     <section class="todoapp">
       <Header @addTodo="addTodo"/>
-      <Body :todos="todos"/>
+      <Body :todos="todos" @updateDone="updateDone"/>
       <Footer/>
     </section>
   </div>
@@ -37,8 +37,18 @@ export default {
         },
       ...this.todos
       ]
+    },
+     updateDone(id){
+    const currentTodos =[...this.todos];
+    const todo =currentTodos.find((todo) => todo.id ===id)
+
+    if (todo){
+      todo.isDone = !todo.isDone;
+      this.tojdos = currentTodos;
     }
   }
+  }
+ 
 };
 </script>
 
